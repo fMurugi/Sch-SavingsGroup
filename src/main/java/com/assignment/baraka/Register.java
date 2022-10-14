@@ -161,7 +161,7 @@ public class Register extends javax.swing.JFrame {
         String Password= txtPassword.getText();
         
           try {
-            Class.forName("com.mysql.jdbc.Driver");
+//            Class.forName("com.mysql.jdbc.Driver");
 //            conn = DriverManager.getConnection(DB_URL,USER,PASS);
 //            System.out.println("Connected database successfully");
             insert = Database.mycon().prepareStatement("insert into Members (MemberFName,MemberLName,MemberUserName,MemberPassword)values(?,?,?,?)");

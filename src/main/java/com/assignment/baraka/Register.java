@@ -92,10 +92,10 @@ public class Register extends javax.swing.JFrame {
                             .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap()))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1)
-                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                         .addGap(45, 45, 45))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,9 +117,9 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(31, 31, 31)
                 .addComponent(jButton1)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Register");
@@ -159,6 +159,7 @@ public class Register extends javax.swing.JFrame {
         String LName = txtLastName.getText();
         String UName = txtUserName.getText();
         String Password= txtPassword.getText();
+//        String GrpName = txtGroupName.getText();
         
           try {
 //            Class.forName("com.mysql.jdbc.Driver");

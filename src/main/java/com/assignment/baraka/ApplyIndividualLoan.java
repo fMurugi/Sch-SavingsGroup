@@ -4,7 +4,12 @@
  */
 package com.assignment.baraka;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,23 +17,24 @@ import java.sql.PreparedStatement;
  */
 public class ApplyIndividualLoan extends javax.swing.JInternalFrame {
     PreparedStatement pst;
-    int loanAmount;
-    int  payPeriod;
-    double loanInterest;
+    double loanInterest ;
     
     public ApplyIndividualLoan() {
         initComponents();
     }
     
     public double calculateInterest(){
+        int loanAmount= Integer.parseInt(txtAmount.getText());
+            int  payPeriod = Integer.parseInt(txtPayPeriod.getText()) ;
+
         if(payPeriod <= 36){
-            loanInterest = 1.2 * loanAmount*payPeriod;
+            loanInterest = loanAmount - (1.2 * loanAmount*payPeriod);
             return loanInterest;
         }else if(payPeriod<=48){
-            loanInterest = 1 * loanAmount*payPeriod;
+            loanInterest = loanAmount -(1 * loanAmount*payPeriod);
             return loanInterest;
     }else{
-         loanInterest = 0.8 * loanAmount*payPeriod;
+         loanInterest =loanAmount - (0.8 * loanAmount*payPeriod);
            return loanInterest;
         }
         
@@ -39,17 +45,11 @@ public class ApplyIndividualLoan extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         txtAmount = new javax.swing.JTextField();
         txtPayPeriod = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Apply");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,32 +66,26 @@ public class ApplyIndividualLoan extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addGap(35, 35, 35)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtAmount)
-                            .addComponent(txtPayPeriod, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 40, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                            .addComponent(txtPayPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -101,16 +95,35 @@ public class ApplyIndividualLoan extends javax.swing.JInternalFrame {
                     .addComponent(txtPayPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jButton1)
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       pst = Database.mycon().prepareStatement("insert into Loans (LoanDate,LoanAmount,DuratinOfPayment,LoanInterest)values(?,?,?,?)");
-            
-            pst.executeUpdate();
+       String amount =txtAmount.getText();
+       int payDuration = Integer.parseInt(txtPayPeriod.getText());
+       int LoanAmount =Integer.parseInt(amount);
+       loanInterest= calculateInterest();
+        java.util.Date date =  Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        String dateToString = dateFormat.format(date);
+        try{
+          pst = Database.mycon().prepareStatement("insert into Loans (LoanAmount,DurationOfPayment,LoanInterest)values(?,?,?)");
+          pst.setString(1, dateToString);
+          pst.setInt(1,LoanAmount );
+          pst.setInt(2, payDuration);
+          pst.setDouble(3,loanInterest);
+          pst.executeUpdate();
+          
+          JOptionPane.showMessageDialog(this, "You have successfully applied for a loan");
+          dispose();
+      }catch(Exception ex){
+        ex.printStackTrace();
+    }
+      
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -118,8 +131,6 @@ public class ApplyIndividualLoan extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtPayPeriod;
     // End of variables declaration//GEN-END:variables

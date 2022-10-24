@@ -98,6 +98,9 @@ public class RegisterGroup extends javax.swing.JFrame {
             instToGroups = Database.mycon().prepareStatement("insert into MemberGrps(GroupName)values(?)");
             instToGroups.setString(1,EnteredGroupName);
             instToGroups.executeUpdate();
+            
+            dispose();
+//            new HomeMembers().setVisible(true);
 
         }catch(Exception ex){
             ex.printStackTrace();

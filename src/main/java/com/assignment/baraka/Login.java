@@ -113,7 +113,8 @@ public class Login extends javax.swing.JFrame {
             if(rs.next()){
                     JOptionPane.showMessageDialog(this, "You have logged in  successfully");
           
-            new Login().setVisible(false);
+//            new Login().setVisible(false);
+            dispose();
             new HomeMembers().setVisible(true);
             }else{
                   JOptionPane.showMessageDialog(this, "Try logging in again");

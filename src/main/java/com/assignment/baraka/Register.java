@@ -173,7 +173,8 @@ public class Register extends javax.swing.JFrame {
             insert.executeUpdate();
            
             JOptionPane.showMessageDialog(this,"succefully registered");
-            this.setVisible(false);
+//            this.setVisible(false);
+            dispose();
             new Login().setVisible(true);
             
             

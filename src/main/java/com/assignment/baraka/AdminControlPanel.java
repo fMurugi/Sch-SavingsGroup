@@ -56,6 +56,8 @@ public class AdminControlPanel extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Registration fees");
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -90,7 +92,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        Reports report = new Reports();
-       
+       jDesktopPane1.add(report);
        report.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

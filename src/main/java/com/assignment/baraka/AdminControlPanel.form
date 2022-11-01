@@ -18,6 +18,9 @@
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registration fees"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>

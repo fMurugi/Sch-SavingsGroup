@@ -44,9 +44,6 @@ public class Register extends javax.swing.JFrame {
         usernamelabel = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -122,15 +119,6 @@ public class Register extends javax.swing.JFrame {
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Register");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Login");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Admin");
-        jMenuBar1.add(jMenu3);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,7 +135,7 @@ public class Register extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,9 +212,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -237,4 +222,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField txtUserName;
     private javax.swing.JLabel usernamelabel;
     // End of variables declaration//GEN-END:variables
+
+    
+   
 }

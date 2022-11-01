@@ -4,57 +4,57 @@
  */
 package com.assignment.baraka;
 
-import com.mysql.cj.protocol.Resultset;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
-import java.util.Vector;
-import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author fiona
  */
-public class Reports extends javax.swing.JInternalFrame {
-    
-    
-    public Reports() {
+public class AllLoansReport extends javax.swing.JInternalFrame {
+
+    /**
+     * Creates new form AllLoansReport
+     */
+    public AllLoansReport() {
         initComponents();
         fillTable();
     }
 
     public  void fillTable(){
-
+        String LoanId ;
+        String LoanDate ;
+        String LoanAmount ;
+        String DurationOfPayment;
+        String LoanStatus;
+        String LoanPenalty;
+        String LoanInterest;
         try{
        
-          String sql = "select * from Members";
+          String sql = "select * from Loans";
            Statement stm =Database.mycon().createStatement();
            ResultSet rs = stm.executeQuery(sql);
-           ResultSetMetaData rsmt = rs.getMetaData();
-           int c = rsmt.getColumnCount();
-           Vector column = new Vector(c);
-           for(int i =1;i<=c;i++){
-               column.add(rsmt.getColumnName(i));
-               
-           }
-           Vector data = new Vector();
-           Vector row = new Vector();
-           while(rs.next()){
-               row = new Vector(c);
-               for(int i = 1;i<=c;i++){
-                   row.add(rs.getString(i));
-               }
-               data.add(row);
-           }
-             jTable1 = new  JTable(data,column);
-    
+           System.out.println(rs);  
+
+        while(rs.next()){
+            LoanId = rs.getString("LoanId");
+            LoanDate = rs.getString("LoanDate");
+            LoanAmount =  rs.getString("LoanAmount");
+            DurationOfPayment = rs.getString("DurationOfPayment");
+            LoanStatus = rs.getString("LoanStatus");
+            LoanPenalty = rs.getString("LoanPenalty");
+            LoanInterest = rs.getString("LoanInterest");
+            String tbData[]= {LoanId,LoanDate,LoanAmount,};
+             DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+             model.addRow(tbData);
+
+       
+        }
       }catch(Exception e){
     e.printStackTrace();
    }
     }
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -62,18 +62,14 @@ public class Reports extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setClosable(true);
-        setTitle("All Members");
+        setBorder(javax.swing.BorderFactory.createTitledBorder("All Loans"));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "LoanId", "LoanDate", "LoanAmount", "DurationOfPayment", "oanStatus", "LoanPenalty", "LoanInterest"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -83,15 +79,15 @@ public class Reports extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();

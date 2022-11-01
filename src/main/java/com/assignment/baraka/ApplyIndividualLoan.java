@@ -4,11 +4,10 @@
  */
 package com.assignment.baraka;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -106,13 +105,15 @@ public class ApplyIndividualLoan extends javax.swing.JInternalFrame {
        int payDuration = Integer.parseInt(txtPayPeriod.getText());
        int LoanAmount =Integer.parseInt(amount);
        loanInterest= calculateInterest();
-        java.util.Date date =  Calendar.getInstance().getTime();  
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+       Date date =  new Date();
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd ");  
         String dateToString = dateFormat.format(date);
+//        java.sql.Date dateDB = new java.sql.Date(dateToString)
         try{
           pst = Database.mycon().prepareStatement("insert into Loans (LoanAmount,DurationOfPayment,LoanInterest)values(?,?,?)");
-          pst.setString(1, dateToString);
           pst.setInt(1,LoanAmount );
+//          pst.setString(2, dateToString);
           pst.setInt(2, payDuration);
           pst.setDouble(3,loanInterest);
           pst.executeUpdate();

@@ -120,7 +120,9 @@ public class AdminLogin extends javax.swing.JFrame {
           
             new LandingPage().setVisible(false);
             dispose();
-            new AdminControlPanel().setVisible(true);
+            AdminControlPanel adminPanel = new AdminControlPanel();
+            adminPanel.setLocationRelativeTo(null);
+            adminPanel.setVisible(true);
             }else{
                   JOptionPane.showMessageDialog(this, "Try logging in again");
 

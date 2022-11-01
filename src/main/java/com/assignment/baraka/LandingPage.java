@@ -117,6 +117,7 @@ public class LandingPage extends javax.swing.JFrame {
         dispose();
         AdminLogin adminLogin = new AdminLogin();
         adminLogin.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
